@@ -12,9 +12,9 @@ const App = () => {
           <Router>
             <Switch>
               {
-                publicRoutes.map((route,idx) => {
+                publicRoutes.map(route => {
                   return (
-                    <Route exact key={idx} path={route.path} component={route.component} />
+                    <Route exact key={route.key} path={route.path} component={route.component} />
                   )
                 })
               }
