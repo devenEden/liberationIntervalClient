@@ -58,7 +58,7 @@ const NavDrawer = () => {
             </Space>
           </h2>
         </Link>
-        <Link>
+        <Link to='/music'>
           <h2 onClick={closeDrawer} className="drawer-link">
             <Space>
               <span className="drawer-icon">
