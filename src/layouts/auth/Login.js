@@ -21,7 +21,7 @@ export class LoginLayout extends Component {
     } else {
       localStorage.setItem("auth_token", res.token);
       setTimeout(msgLoadingLogin);
-      this.props.history.push("/");
+      this.props.history.push("/home");
     }
   };
   forgotPassword = async (values) => {

@@ -3,8 +3,8 @@ import HomePage from "../pages/home/HomePage";
 
 const protectedRoutes = [
      {
-         key:'/',
-         path:'/',
+         key:'/home',
+         path:'/home',
          component:HomePage
      } 
 ]

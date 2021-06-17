@@ -35,6 +35,7 @@ body {
   box-shadow: 2px 2px 4px 4px var(--box-shardow);
   display: flex;
   flex-direction: row;
+  cursor: default;
 }
 
 .nav-title {
@@ -58,8 +59,25 @@ body {
   justify-content: flex-end;
   font-size: 25px;
 }
-.nav-links > .search {
+.menu-button {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* drawer */
+.drawer-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.drawer-link {
+  transition: 1s ease-in;
+}
+.drawer-link:hover,
+.drawer-link:focus {
+  border-bottom: 1px solid var(--primary-color);
 }
 
 .container-central {

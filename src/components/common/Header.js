@@ -6,15 +6,22 @@ import {
   IoMdPerson,
   IoMdSearch,
 } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { toggleglobalDrawer } from "../../actions/global/globalActions";
 
 const Header = () => {
+
+  const dispatch = useDispatch();
+  const  openDrawer = () => {
+    console.log("Action",dispatch(toggleglobalDrawer(true)));
+  };
   return (
     <div className="main-header">
       <nav className="nav">
         <div className="nav-title">
-          <Tooltip placement="bottomLeft" title="Menu">
-            <IoMdMenu />
-          </Tooltip>
+          <div onClick={openDrawer} className="menu-button">
+              <IoMdMenu />
+          </div>
           &nbsp;&nbsp;
           <h1>Liberation Interval</h1>
         </div>

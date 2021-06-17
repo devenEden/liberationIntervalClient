@@ -4,6 +4,8 @@ const initialState = {
 
   authLayout: "login",
   isForgotPasswordModalOpen: false,
+
+  isglobalDrawerVisible: false
 };
 
 const globalReducer = (state = initialState, { type, payload }) => {
@@ -18,6 +20,11 @@ const globalReducer = (state = initialState, { type, payload }) => {
         ...state,
         isForgotPasswordModalOpen: payload,
       };
+      case globalConstants.TOGGLE_GLOBAL_DRAWER:
+        return {
+          ...state,
+          isglobalDrawerVisible: payload,
+        };
 
     default:
       return state;

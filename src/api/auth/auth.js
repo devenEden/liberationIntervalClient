@@ -14,7 +14,6 @@ export const authApiCall = async (api_url, values, reqUrl) => {
     const apiResponse = res
       .json()
       .then((response) => {
-        console.log(response);
         return response;
       })
       .catch((err) => {
@@ -45,7 +44,6 @@ export const resetPasswordApiCall = async (api_url, values, reqUrl) => {
     const apiResponse = res
       .json()
       .then((response) => {
-        console.log(response);
         return response;
       })
       .catch((err) => {
