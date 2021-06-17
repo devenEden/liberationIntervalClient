@@ -1,18 +1,17 @@
 import AuthPage from "../pages/auth/AuthPage";
-import HomePage from "../pages/home/HomePage";
-
+import ResetPasswordPage from "../pages/auth/ResetPasswordPage";
 
 const publicRoutes = [
-     {
-         key:'auth',
-         path:'/authentication',
-         component:AuthPage
-     },
-     {
-         key:'/',
-         path:'/',
-         component:HomePage
-     }
-]
+  {
+    key: "auth",
+    path: "/authentication",
+    component: AuthPage,
+  },
+  {
+    key: "resetPassword",
+    path: "/resetPassword/:resetToken",
+    component: ResetPasswordPage,
+  },
+];
 
 export default publicRoutes;

@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Layout } from 'antd';
+import HomeLayout from '../../layouts/home/HomeLayout';
 
 const HomePage = () => {
     return (
         <div>
-           <h1>HOME PAGE</h1> 
+           <Layout>
+             <HomeLayout />
+           </Layout>
         </div>
     )
 }
