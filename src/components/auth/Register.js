@@ -17,7 +17,7 @@ export class RegisterLayout extends Component {
     else {
       localStorage.setItem('auth_token',res.token);
       setTimeout(msgLoadingRegister);
-      this.props.history.push('/');
+      this.props.history.push('/home');
     }
     }
 
