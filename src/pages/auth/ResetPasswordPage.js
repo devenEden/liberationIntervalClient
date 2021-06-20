@@ -9,7 +9,7 @@ const ResetPasswordPage = ({ history }) => {
 
   const { resetToken } = useParams();
   const onFinish = async (values) => {
-    const res =  await resetPasswordApiCall(
+    const res = await resetPasswordApiCall(
       api_url,
       values,
       `/api/auth/resetPassword/${resetToken}`
@@ -23,9 +23,11 @@ const ResetPasswordPage = ({ history }) => {
         content: (
           <div>
             <h1>Password has been reset. You can now login</h1>
-          </div>
+          </div> 
         ),
-        onOk() { history.push('/authentication')},
+        onOk() {
+          history.push("/authentication");
+        },
       });
       setTimeout(msgLoading);
     }
@@ -34,8 +36,8 @@ const ResetPasswordPage = ({ history }) => {
     console.log(values);
   };
   const returnToLogin = () => {
-    history.push('/authentication');
-  }
+    history.push("/authentication");
+  };
   return (
     <div className="container-central">
       <div className="auth-form-container box-shadow">
@@ -101,7 +103,9 @@ const ResetPasswordPage = ({ history }) => {
         <div className="auth-form-info">
           <h1>Liberation Interval</h1>
           <p>Return to login page here</p>
-          <button onClick={returnToLogin} className="auth-button">Login</button>
+          <button onClick={returnToLogin} className="auth-button">
+            Login
+          </button>
         </div>
       </div>
     </div>

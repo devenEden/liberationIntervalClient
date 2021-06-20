@@ -1,13 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
-  IoMdArrowUp,
+  IoMdHeadset,
   IoMdHome,
   IoMdLogOut,
   IoMdMusicalNote,
   IoMdRecording,
 } from "react-icons/io";
-import { Drawer, Space } from "antd";
+import { Drawer, message, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleglobalDrawer } from "../../actions/global/globalActions";
 
@@ -19,6 +19,15 @@ const NavDrawer = () => {
   const closeDrawer = () => {
     console.log("Action", dispatch(toggleglobalDrawer(false)));
   };
+
+  const history = useHistory();
+  const logoutUser = () => {
+    const msgLoading = message.loading('Logging you out ...');
+    localStorage.removeItem('auth_token');
+    setTimeout(msgLoading);
+    console.log("Action", dispatch(toggleglobalDrawer(false)));
+    history.push('/authentication');
+  }
   return (
     <div>
       <Drawer
@@ -38,13 +47,13 @@ const NavDrawer = () => {
             </Space>
           </h2>
         </Link>
-        <Link>
+        <Link to='/mixtapes'>
           <h2 onClick={closeDrawer} className="drawer-link">
             <Space>
               <span className="drawer-icon">
-                <IoMdArrowUp />
+                <IoMdHeadset />
               </span>
-              <span>Upload Mixtape</span>
+              <span>My Mixtapes</span>
             </Space>
           </h2>
         </Link>
@@ -68,8 +77,7 @@ const NavDrawer = () => {
             </Space>
           </h2>
         </Link>
-        <Link>
-          <h2 onClick={closeDrawer} className="drawer-link">
+          <h2 onClick={logoutUser} className="drawer-link logout-btn">
             <Space>
               <span className="drawer-icon">
                 <IoMdLogOut />
@@ -77,7 +85,6 @@ const NavDrawer = () => {
               <span>Logout</span>
             </Space>
           </h2>
-        </Link>
       </Drawer>
     </div>
   );

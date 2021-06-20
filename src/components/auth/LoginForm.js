@@ -1,16 +1,17 @@
 import React from "react";
-
 import { Form, Input, Button } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleForgotPasswordModal } from "../../actions/global/globalActions";
 
 const LoginForm = ({ submitLoginForm }) => {
   const onFinish = (values) => {
     submitLoginForm(values);
   };
-  const onFinishFailed = (values) => {
-    console.log(values);
-  };
+
+  const loading = useSelector(
+    (state) => state.globalReducer.isLoginButtonLoading
+  );
+
   const dispatch = useDispatch();
 
   const openForgotPasswordModal = () => {
@@ -26,7 +27,6 @@ const LoginForm = ({ submitLoginForm }) => {
           span: 32,
         }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
       >
         <Form.Item>
           <h1>Login </h1>
@@ -43,6 +43,7 @@ const LoginForm = ({ submitLoginForm }) => {
             },
           ]}
         >
+          
           <Input autoComplete="off" />
         </Form.Item>
         <Form.Item
@@ -56,7 +57,7 @@ const LoginForm = ({ submitLoginForm }) => {
           <Input.Password autoComplete="off" />
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit" type="primary">
+          <Button loading={loading} htmlType="submit" type="primary">
             Login
           </Button>
         </Form.Item>

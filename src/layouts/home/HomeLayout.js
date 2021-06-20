@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "../../components/common/Header";
-import CardContainer from "../../components/home/CardContainer";
+import CardContainer from "../../components/mixtapes/CardContainer";
 import MusicContainer from "../../components/home/MusicContainer";
 import { toggleglobalDrawer } from "../../actions/global/globalActions";
 import { connect } from "react-redux";

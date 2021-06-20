@@ -1,7 +1,10 @@
+import { combineReducers } from "redux";
+import globalReducer from "./globalReducer";
+import mixtapeReducer from "./mixtapesReducer";
+import musicReducer from "./musicReducer";
 
-import { combineReducers } from 'redux';
-import globalReducer from './globalReducer';
-
-export default  combineReducers({
-     globalReducer
-})
+export default combineReducers({
+  globalReducer,
+  mixtapeReducer,
+  musicReducer,
+});

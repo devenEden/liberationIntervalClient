@@ -7,9 +7,6 @@ const RegisterForm = ({ onSubmitRegisterForm }) => {
   const onFinish = (values) => {
     onSubmitRegisterForm(values);
   };
-  const onFinishFailed = (values) => {
-    console.log(values);
-  };
   const changeChecked = () => {
     checked ? setChecked(false) : setChecked(true);
   };
@@ -22,7 +19,6 @@ const RegisterForm = ({ onSubmitRegisterForm }) => {
           span: 32,
         }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
       >
         <Form.Item>
           <h1>Register </h1>

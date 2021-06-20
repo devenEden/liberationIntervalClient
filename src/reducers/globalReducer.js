@@ -5,7 +5,12 @@ const initialState = {
   authLayout: "login",
   isForgotPasswordModalOpen: false,
 
-  isglobalDrawerVisible: false
+  loginSuccess:true,
+  isLoginButtonLoading: false,
+
+  isglobalDrawerVisible: false,
+
+  
 };
 
 const globalReducer = (state = initialState, { type, payload }) => {
@@ -20,12 +25,17 @@ const globalReducer = (state = initialState, { type, payload }) => {
         ...state,
         isForgotPasswordModalOpen: payload,
       };
-      case globalConstants.TOGGLE_GLOBAL_DRAWER:
+    case globalConstants.TOGGLE_GLOBAL_DRAWER:
+      return {
+        ...state,
+        isglobalDrawerVisible: payload,
+      };
+    case globalConstants.SET_LOGIN_SUCESSS:
         return {
           ...state,
-          isglobalDrawerVisible: payload,
-        };
-
+          loginSuccess: payload.success,
+          isLoginButtonLoading: payload.loading
+        }
     default:
       return state;
   }
