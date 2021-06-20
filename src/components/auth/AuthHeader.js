@@ -1,10 +1,8 @@
 import React from "react";
 import { Tooltip } from "antd";
 import { IoMdHome } from "react-icons/io";
-import { useHistory } from "react-router-dom";
 
 const AuthHeader = () => {
-  const history = useHistory();
 
   const goToLandingPage = () => {
    window.location = "/";
