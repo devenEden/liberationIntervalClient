@@ -24,7 +24,7 @@ export class RegisterLayout extends Component {
     render() {
         return (
             <div className='container-central'>
-               <div className='auth-form-container box-shadow auth-register-form'>
+               <div style={{marginTop:"70px"}} className='auth-form-container box-shadow auth-register-form'>
                    <RegisterForm onSubmitRegisterForm={this.registerUser} />
                    <RegisterFormInfo />
                </div>
