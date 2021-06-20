@@ -1,6 +1,6 @@
 import { globalConstants } from "../actions/global/globalActions";
 const initialState = {
-  api_url: "https://liberation-interval.herokuapp.com/",
+  api_url: "https://liberation-interval.herokuapp.com",
 
   authLayout: "login",
   isForgotPasswordModalOpen: false,
