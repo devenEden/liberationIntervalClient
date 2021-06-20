@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Card, Empty, message } from "antd";
 import img from "../../assets/s263939.jpg";
 import { useDispatch, useSelector } from "react-redux";
