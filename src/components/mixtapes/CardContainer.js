@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { Button, Card, Empty, message } from "antd";
+import { Button, Card, Empty } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMixtapesFromServer } from "../../api/home/homeApiCall";
-import { setMixtapesRequest } from "../../actions/mixtapeActions";
-import AOS from "aos";
+import {
+  setMixtapesError,
+  setMixtapesRequest,
+} from "../../actions/mixtapeActions";
 
 const { Meta } = Card;
 const CardContainer = () => {
@@ -15,30 +17,29 @@ const CardContainer = () => {
   const dispatch = useDispatch();
 
   const getAllMixtapes = async () => {
-    const res = await getAllMixtapesFromServer(api_url, "/api/mixtapes/");
-    if (!res.success) {
-      const payload = {
-        success: res.success,
-        loading: false,
-        mixtapes: [],
-      };
-      console.log("Action", dispatch(setMixtapesRequest(payload)));
-      message.error(
-        "Sorry we are having some trouble loading the mixtapes ..."
-      );
-    } else {
+    try {
+      const res = await getAllMixtapesFromServer(api_url, "/api/mixtapes/");
       const payload = {
         success: res.success,
         loading: false,
         mixtapes: res.data,
       };
       console.log("Action", dispatch(setMixtapesRequest(payload)));
+    } catch (error) {
+      console.error('Error occured while trying to display mixtapes');
+      console.log(
+        "Action",
+        dispatch(
+          setMixtapesError({
+            success: false,
+            loading: false,
+            mixtapes: [],
+          })
+        )
+      );
     }
   };
   useEffect(() => {
-    AOS.init({
-      duration: 2000,
-    });
     getAllMixtapes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

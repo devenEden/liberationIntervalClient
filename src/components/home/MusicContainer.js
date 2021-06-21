@@ -16,31 +16,37 @@ const MusicContainer = (props) => {
   );
   const history = useHistory();
   const dispatch = useDispatch();
-
+  const getHomePageMusic = async () => {
+    try {
+      const res = await getDataFromServer(api_url, "/api/music");
+      console.log(
+        "Action",
+        dispatch(
+          setHomePageMusic({
+            success: true,
+            loading: true,
+            music: res.data.tracks.slice(0, 5),
+          })
+        )
+      );
+    } catch (error) {
+      console.error('Error when trying to display music on home page');
+      console.log(
+        "Action",
+        dispatch(
+          setHomePageMusicError({
+            success: false,
+            loading: false,
+            music: [],
+          })
+        )
+      );
+    }
+  };
 
   useEffect(() => {
-    const getHomePageMusic = async () => {
-      const res = await getDataFromServer(api_url, "/api/music");
-      if (!res.success) {
-        const payload = {
-          success: false,
-          loading: false,
-          music: [],
-          error: res.error || "error occured",
-        };
-        console.log("Action", dispatch(setHomePageMusicError, payload));
-      } else {
-        const payload = {
-          success: true,
-          loading: false,
-          music: res.data.tracks.slice(0, 5),
-          error: res.error || "error occured",
-        };
-        console.log("Action", dispatch(setHomePageMusic(payload)));
-      }
-    };
     getHomePageMusic();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const goToMusicPage = () => {

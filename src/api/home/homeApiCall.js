@@ -10,6 +10,6 @@ export const getAllMixtapesFromServer = async (api_url, path, body) => {
 
     return mixtapes.json();
   } catch (error) {
-    console.error(error);
+    console.error('Server failed to respond when fetching required mixtapes');
   }
 };

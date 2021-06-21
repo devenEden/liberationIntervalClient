@@ -69,10 +69,8 @@ export const verifyTokenApiCall = async (api_url) => {
     })
       .then((response) => response)
       .catch((err) => err);
-
     return res.json();
   } catch (error) {
-    console.error("here", error);
-    return { success: false, error: error.message };
+    console.error('Error: connection to server failed during verification service');
   }
 };
