@@ -498,10 +498,8 @@ body {
   .container-central {
     flex-direction: column-reverse;
   }
-  .auth-form-info {
+  .auth-form-info,.add-mixtape-form {
     width: auto;
-    padding: 10px;
-    border-radius: 5px;
   }
 
   .auth-form-container {
