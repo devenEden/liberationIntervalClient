@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMixtapeForm, toggleAddMixtapeLoading } from "../../../actions/mixtapeActions";
 
 const AddMixtapeImage = () => {
+  const loading = useSelector(
+    (state) => state.mixtapeReducer.uploadmixtapesLoading
+  );
   const api_url = useSelector((state) => state.globalReducer.api_url);
   const dispatch = useDispatch();
   dispatch(toggleAddMixtapeLoading(true));
@@ -68,7 +71,7 @@ const AddMixtapeImage = () => {
           <br />
           <Form.Item>
             <Space>
-              <Button htmlType="submit" loading={false} type="primary">
+              <Button htmlType="submit" loading={loading} type="primary">
                 <Space>
                   Continue <IoMdArrowForward />
                 </Space>

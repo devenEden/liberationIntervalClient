@@ -7,6 +7,9 @@ import { setMixtapeForm, toggleAddMixtapeLoading } from "../../../actions/mixtap
 
 const AddMixtapeAudio = () => {
   const api_url = useSelector((state) => state.globalReducer.api_url);
+  const loading = useSelector(
+    (state) => state.mixtapeReducer.uploadmixtapesLoading
+  );
   const dispatch = useDispatch();
   const submitAudioForm = async (values) => {
     dispatch(toggleAddMixtapeLoading(true));
@@ -63,7 +66,7 @@ const AddMixtapeAudio = () => {
           <br />
           <Form.Item>
             <Space>
-              <Button htmlType="submit" loading={false} type="primary">
+              <Button htmlType="submit" loading={loading} type="primary">
                 <Space>
                   Finish <IoMdCheckmark />
                 </Space>

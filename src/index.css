@@ -492,25 +492,18 @@ body {
   .nav-title h1 {
     font-size: 16px;
   }
-  .auth-form-div {
+  .auth-form-div,
+  .auth-form-info,
+  .add-mixtape-form {
     width: auto;
   }
+  .auth-form-container,
   .container-central {
-    flex-direction: column-reverse;
-  }
-  .auth-form-info,.add-mixtape-form {
-    width: auto;
-  }
-
-  .auth-form-container {
     flex-direction: column-reverse;
   }
   .auth-form-info {
     width: auto;
     padding: 10px;
     border-radius: 5px;
-  }
-  .auth-form-div {
-    width: auto;
   }
 }
