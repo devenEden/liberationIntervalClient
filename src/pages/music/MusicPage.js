@@ -1,6 +1,6 @@
 import Header from "../../components/common/Header";
 import React, { useEffect } from "react";
-import NavDrawer from "../../components/common/NavDrawer";
+import NavDrawer from "../../components/common/drawers/NavDrawer";
 import MusicContainer from "../../components/music/MusicContainer";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";

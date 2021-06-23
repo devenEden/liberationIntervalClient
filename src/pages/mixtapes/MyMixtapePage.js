@@ -2,7 +2,7 @@ import { Button } from "antd";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/common/Header";
-import NavDrawer from "../../components/common/NavDrawer";
+import NavDrawer from "../../components/common/drawers/NavDrawer";
 import MyMixtapes from "../../components/mixtapes/MyMixtapes";
 
 export class MyMixtapePage extends Component {

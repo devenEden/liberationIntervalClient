@@ -8,6 +8,7 @@ import {
   setHomePageMusic,
 } from "../../actions/musicActions";
 import { useHistory } from "react-router-dom";
+import SecondaryLoader from "../common/loaders/SecondaryLoader";
 
 const MusicContainer = (props) => {
   const api_url = useSelector((state) => state.globalReducer.api_url);
@@ -24,7 +25,7 @@ const MusicContainer = (props) => {
         dispatch(
           setHomePageMusic({
             success: true,
-            loading: true,
+            loading: false,
             music: res.data.tracks.slice(0, 5),
           })
         )
@@ -58,11 +59,7 @@ const MusicContainer = (props) => {
     <div className="music-home-div">
       <div className="music-div-content">
         {loading ? (
-          <div className="main-loader">
-            <div class="loader-1 center">
-              <span></span>
-            </div>
-          </div>
+          <SecondaryLoader />
         ) : (
           <>
             <h2>Trending music</h2>

@@ -1,13 +1,15 @@
-import { Button, Form, Input, Select, Space } from "antd";
-import TextArea from "antd/lib/input/TextArea";
+import { message } from "antd";
+
 import React, { Component } from "react";
-import { IoMdArrowForward } from "react-icons/io";
 import { connect } from "react-redux";
 import { verifyTokenApiCall } from "../../api/auth/auth";
 import Header from "../../components/common/Header";
-import NavDrawer from "../../components/common/NavDrawer";
+import NavDrawer from "../../components/common/drawers/NavDrawer";
+import AddMixtapeDetails from "../../components/mixtapes/forms/AddMixtapeDetails";
+import AddMixtapeImage from "../../components/mixtapes/forms/AddMixtapesImage";
+import AddMixtapeAudio from "../../components/mixtapes/forms/AddMixtapesAudio";
+import { setMixtapeForm } from "../../actions/mixtapeActions";
 
-const { Option } = Select;
 export class AddMixtapePage extends Component {
   verify = async () => {
     try {
@@ -15,13 +17,22 @@ export class AddMixtapePage extends Component {
       if (!res.success) {
         this.props.history.push("/authentication");
         localStorage.removeItem("auth_token");
+        message.error("Sorry your session has expired");
       }
     } catch (error) {
-      console.warn(error);
+      console.error(
+        "Server failed to respond error during home page verification"
+      );
     }
   };
 
+  setAddMixtapeForm = () => {
+    const { addMixtapeStep } = localStorage;
+    if (addMixtapeStep) this.props.setMixtapeForm(addMixtapeStep);
+  };
+
   componentDidMount() {
+    this.setAddMixtapeForm();
     this.verify();
   }
   onFinish = (values) => {
@@ -34,72 +45,9 @@ export class AddMixtapePage extends Component {
           <Header />
           <NavDrawer />
           <div className="add-mixtape-form-div">
-            <div className="auth-form-container box-shadow">
-              <div className="add-mixtape-form">
-                <Form onFinish={this.onFinish} size="middle" layout="vertical">
-                  <Form.Item>
-                    <h1>Upload new Mixtape</h1>
-                  </Form.Item>
-                  <Form.Item
-                    name="name"
-                    label="Name"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter a mixtape name",
-                      },
-                    ]}
-                  >
-                    <Input autoComplete="off" />
-                  </Form.Item>
-                  <Form.Item
-                    name="category"
-                    label="Category"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter a mixtape category",
-                      },
-                    ]}
-                  >
-                    <Select defaultValue="">
-                      <Option key="Reggae" value="Reggae">
-                        Reggae
-                      </Option>
-                      <Option key="dance-hal" value="Dance_Hall">
-                        Dance Hall
-                      </Option>
-                      <Option key="oldies" value="Oldies">
-                        Oldies
-                      </Option>
-                      <Option key="slows" value="Slows">
-                        Slows
-                      </Option>
-                      <Option key="trap" value="Trap">
-                        Trap
-                      </Option>
-                      <Option key="rnd" value="Rnb">
-                        Rnb
-                      </Option>
-                    </Select>
-                  </Form.Item>
-                  <Form.Item name="caption" label="Caption">
-                    <TextArea />
-                  </Form.Item>
-                  <Form.Item>
-                    <Button htmlType="submit" loading={false} type="primary">
-                      <Space>
-                        Next <IoMdArrowForward />{" "}
-                      </Space>
-                    </Button>
-                  </Form.Item>
-                </Form>
-              </div>
-              <div className="auth-form-info">
-                <h1>Details</h1>
-                <p>Here you can add details about your mixtape</p>
-              </div>
-            </div>
+            {this.props.form === "details" && <AddMixtapeDetails />}
+            {this.props.form === "coverImage" && <AddMixtapeImage />}
+            {this.props.form === "audio" && <AddMixtapeAudio />}
           </div>
         </div>
       </div>
@@ -110,7 +58,14 @@ export class AddMixtapePage extends Component {
 const mapStateToProps = (state) => {
   return {
     api_url: state.globalReducer.api_url,
+    form: state.mixtapeReducer.AddMixtapeForm,
   };
 };
 
-export default connect(mapStateToProps)(AddMixtapePage);
+const mapDispatchToProps = () => {
+  return {
+    setMixtapeForm,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(AddMixtapePage);

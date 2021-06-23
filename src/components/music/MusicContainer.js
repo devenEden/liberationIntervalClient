@@ -6,7 +6,7 @@ import {
   setMusicPageMusic,
   setMusicPageMusicError,
 } from "../../actions/musicActions";
-import MainLoader from "../common/MainLoader";
+import MainLoader from "../common/loaders/MainLoader";
 
 const { Meta } = Card;
 

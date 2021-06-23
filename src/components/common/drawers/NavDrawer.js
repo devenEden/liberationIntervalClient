@@ -9,7 +9,7 @@ import {
 } from "react-icons/io";
 import { Drawer, message, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleglobalDrawer } from "../../actions/global/globalActions";
+import { toggleglobalDrawer } from "../../../actions/global/globalActions";
 
 const NavDrawer = () => {
   const drawerVisible = useSelector(

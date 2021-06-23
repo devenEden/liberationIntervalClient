@@ -6,6 +6,7 @@ import {
   setMixtapesError,
   setMixtapesRequest,
 } from "../../actions/mixtapeActions";
+import MainLoader from "../common/loaders/MainLoader";
 
 const { Meta } = Card;
 const CardContainer = () => {
@@ -47,13 +48,7 @@ const CardContainer = () => {
   return (
     <div className="mixtapes-container">
       {loading ? (
-        <div className="main-loader">
-          <div class="loader-1 center">
-            <span></span>
-          </div>
-          &nbsp;&nbsp;
-          <h1>loading ...</h1>
-        </div>
+        <MainLoader />
       ) : (
         <>
           {mixtapes.length <= 0 ? (

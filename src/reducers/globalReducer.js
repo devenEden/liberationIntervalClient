@@ -6,11 +6,15 @@ const initialState = {
   authLayout: "login",
   isForgotPasswordModalOpen: false,
 
-  loginSuccess:true,
+  loginSuccess: true,
   isLoginButtonLoading: false,
 
   isglobalDrawerVisible: false,
 
+  isProfileDrawerVisible: false,
+  profileLoading: true,
+  profileSuccess: false,
+  profileInfo:{}
   
 };
 
@@ -31,12 +35,31 @@ const globalReducer = (state = initialState, { type, payload }) => {
         ...state,
         isglobalDrawerVisible: payload,
       };
+    case globalConstants.TOGGLE_PROFILE_DRAWER:
+      return {
+        ...state,
+        isProfileDrawerVisible: payload,
+      };
     case globalConstants.SET_LOGIN_SUCESSS:
+      return {
+        ...state,
+        loginSuccess: payload.success,
+        isLoginButtonLoading: payload.loading,
+      };
+      case globalConstants.SET_PROFILE_REQUEST:
         return {
           ...state,
-          loginSuccess: payload.success,
-          isLoginButtonLoading: payload.loading
-        }
+          profileInfo: payload.profileInfo,
+          profileLoading: payload.loading,
+          profileSuccess: payload.success
+        };
+        case globalConstants.SET_PROFILE_ERROR:
+          return {
+            ...state,
+            profileInfo: payload.profileInfo,
+            profileLoading: payload.loading,
+            profileSuccess: payload.success,
+          };
     default:
       return state;
   }

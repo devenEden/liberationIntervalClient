@@ -1,6 +1,6 @@
 import React from "react";
 
-const MainLoader = () => {
+const SecondaryLoader = () => {
   return (
     <div className="main-loader">
       <div class="loader-1 center">
@@ -10,4 +10,4 @@ const MainLoader = () => {
   );
 };
 
-export default MainLoader;
+export default SecondaryLoader;

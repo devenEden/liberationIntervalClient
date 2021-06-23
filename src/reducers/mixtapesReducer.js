@@ -8,7 +8,13 @@ const initialState = {
 
   homePageSkip: 0,
   homePageLimit: 20,
-  
+
+  AddMixtapeForm: "details",
+  uploadmixtapesLoading: false,
+  uploadMixtapesDetailsSuccess: false,
+  uploadMixtapesCoverImageSuccess: false,
+  uploadMixtapesCoverAudioSuccess: false,
+  uploadMixtapesDetails: {},
 };
 
 const mixtapeReducer = (state = initialState, { type, payload }) => {
@@ -27,7 +33,33 @@ const mixtapeReducer = (state = initialState, { type, payload }) => {
         loading: payload.loading,
         success: payload.success,
         errors: payload.error,
-        mixtapes:payload.mixtapes
+        mixtapes: payload.mixtapes,
+      };
+    case mixtapeConstants.ADD_MIXTAPES_DETAILS_REQUEST:
+      return {
+        ...state,
+        uploadmixtapesLoading: payload.loading,
+        uploadMixtapesDetailsSuccess: payload.success,
+        uploadMixtapesDetails: payload.details,
+        AddMixtapeForm: payload.form,
+      };
+    case mixtapeConstants.ADD_MIXTAPES_DETAILS_ERROR:
+      return {
+        ...state,
+        uploadmixtapesLoading: payload.loading,
+        uploadMixtapesDetailsSuccess: payload.success,
+        uploadMixtapesDetails: payload.details,
+        AddMixtapeForm: payload.form,
+      };
+    case mixtapeConstants.TOGGLE_ADD_MIXTAPE_LOADING:
+      return {
+        ...state,
+        uploadmixtapesLoading: payload,
+      };
+    case mixtapeConstants.SET_MIXTAPE_FORM:
+      return {
+        ...state,
+        AddMixtapeForm: payload,
       };
     default:
       return state;
