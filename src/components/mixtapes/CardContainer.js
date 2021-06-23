@@ -20,14 +20,27 @@ const CardContainer = () => {
   const getAllMixtapes = async () => {
     const res = await getAllMixtapesFromServer(api_url, "/api/mixtapes");
     try {
-      const payload = {
-        success: res.success,
-        loading: false,
-        mixtapes: res.data,
-      };
-      console.log("Action", dispatch(setMixtapesRequest(payload)));
+      if (res.success) {
+        const payload = {
+          success: res.success,
+          loading: false,
+          mixtapes: res.data,
+        };
+        console.log("Action", dispatch(setMixtapesRequest(payload)));
+      } else {
+        console.log(
+          "Action",
+          dispatch(
+            setMixtapesRequest({
+              success: false,
+              loading: false,
+              mixtapes: [],
+            })
+          )
+        );
+      }
     } catch (error) {
-      console.error('Error occured while trying to display mixtapes');
+      console.error("Error occured while trying to display mixtapes");
       console.log(
         "Action",
         dispatch(
@@ -40,9 +53,9 @@ const CardContainer = () => {
       );
     }
   };
-  const openMixtape = e => {
-      console.log(e.target.offsetParent.id);
-  }
+  const openMixtape = (e) => {
+    console.log(e.target.offsetParent.id);
+  };
   useEffect(() => {
     getAllMixtapes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
