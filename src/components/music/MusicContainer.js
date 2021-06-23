@@ -83,7 +83,7 @@ const MusicContainer = () => {
                         <img alt={song.title} src={song.images.coverart} />
                       }
                     >
-                      <Meta title={song.title} description={song.title} />
+                      <Meta title={song.title} description={song.subtitle} />
                     </Card>
                   );
                 })}
