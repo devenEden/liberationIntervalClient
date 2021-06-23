@@ -5,6 +5,7 @@ import MusicContainer from "../../components/music/MusicContainer";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { verifyTokenApiCall } from "../../api/auth/auth";
+import ProfileDrawer from "../../components/common/drawers/ProfileDrawer";
 
 const MusicPage = () => {
   const api_url = useSelector((state) => state.globalReducer.api_url);
@@ -33,6 +34,7 @@ const MusicPage = () => {
         <Header />
         <div className="main-container">
           <NavDrawer />
+          <ProfileDrawer />
           <MusicContainer />
         </div>
       </div>

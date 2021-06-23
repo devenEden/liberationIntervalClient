@@ -9,6 +9,7 @@ import AddMixtapeDetails from "../../components/mixtapes/forms/AddMixtapeDetails
 import AddMixtapeImage from "../../components/mixtapes/forms/AddMixtapesImage";
 import AddMixtapeAudio from "../../components/mixtapes/forms/AddMixtapesAudio";
 import { setMixtapeForm } from "../../actions/mixtapeActions";
+import ProfileDrawer from "../../components/common/drawers/ProfileDrawer";
 
 export class AddMixtapePage extends Component {
   verify = async () => {
@@ -44,6 +45,7 @@ export class AddMixtapePage extends Component {
         <div className="home-container">
           <Header />
           <NavDrawer />
+          <ProfileDrawer />
           <div className="add-mixtape-form-div">
             {this.props.form === "details" && <AddMixtapeDetails />}
             {this.props.form === "coverImage" && <AddMixtapeImage />}

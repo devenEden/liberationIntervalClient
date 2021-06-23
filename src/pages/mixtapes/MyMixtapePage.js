@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Header from "../../components/common/Header";
 import NavDrawer from "../../components/common/drawers/NavDrawer";
 import MyMixtapes from "../../components/mixtapes/MyMixtapes";
+import ProfileDrawer from "../../components/common/drawers/ProfileDrawer";
 
 export class MyMixtapePage extends Component {
   state = {
@@ -18,6 +19,7 @@ export class MyMixtapePage extends Component {
       <div className="home-container">
         <Header />
         <NavDrawer />
+        <ProfileDrawer />
         <div className="main-container">
           <div className="my-mixtapes-container">
             <h1 className="my-mixtapes-title">My Mixtapes</h1>
