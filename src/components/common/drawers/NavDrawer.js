@@ -22,12 +22,12 @@ const NavDrawer = () => {
 
   const history = useHistory();
   const logoutUser = () => {
-    const msgLoading = message.loading('Logging you out ...');
-    localStorage.removeItem('auth_token');
+    const msgLoading = message.loading("Logging you out ...");
+    localStorage.removeItem("auth_token");
     setTimeout(msgLoading);
-    console.log("Action", dispatch(toggleglobalDrawer(false)));
-    history.push('/authentication');
-  }
+    dispatch(toggleglobalDrawer(false));
+    history.push("/authentication");
+  };
   return (
     <div>
       <Drawer
@@ -47,7 +47,7 @@ const NavDrawer = () => {
             </Space>
           </h2>
         </Link>
-        <Link to='/mixtapes'>
+        <Link to="/mixtapes">
           <h2 onClick={closeDrawer} className="drawer-link">
             <Space>
               <span className="drawer-icon">
@@ -57,17 +57,17 @@ const NavDrawer = () => {
             </Space>
           </h2>
         </Link>
-        <Link>
+        <Link to="/mixtapes/create">
           <h2 onClick={closeDrawer} className="drawer-link">
             <Space>
               <span className="drawer-icon">
                 <IoMdRecording />
               </span>
-              <span>Mixtape Requests</span>
+              <span>Upload Mixtapes</span>
             </Space>
           </h2>
         </Link>
-        <Link to='/music'>
+        <Link to="/music">
           <h2 onClick={closeDrawer} className="drawer-link">
             <Space>
               <span className="drawer-icon">
@@ -77,14 +77,14 @@ const NavDrawer = () => {
             </Space>
           </h2>
         </Link>
-          <h2 onClick={logoutUser} className="drawer-link logout-btn">
-            <Space>
-              <span className="drawer-icon">
-                <IoMdLogOut />
-              </span>
-              <span>Logout</span>
-            </Space>
-          </h2>
+        <h2 onClick={logoutUser} className="drawer-link logout-btn">
+          <Space>
+            <span className="drawer-icon">
+              <IoMdLogOut />
+            </span>
+            <span>Logout</span>
+          </Space>
+        </h2>
       </Drawer>
     </div>
   );

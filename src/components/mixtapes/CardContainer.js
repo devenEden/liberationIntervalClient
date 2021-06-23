@@ -18,8 +18,8 @@ const CardContainer = () => {
   const dispatch = useDispatch();
 
   const getAllMixtapes = async () => {
+    const res = await getAllMixtapesFromServer(api_url, "/api/mixtapes");
     try {
-      const res = await getAllMixtapesFromServer(api_url, "/api/mixtapes/");
       const payload = {
         success: res.success,
         loading: false,
@@ -40,6 +40,9 @@ const CardContainer = () => {
       );
     }
   };
+  const openMixtape = e => {
+      console.log(e.target.offsetParent.id);
+  }
   useEffect(() => {
     getAllMixtapes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,6 +85,8 @@ const CardContainer = () => {
               {mixtapes.map((mixtape) => {
                 return (
                   <Card
+                    onClick={openMixtape}
+                    id={mixtape._id}
                     key={mixtape._id}
                     data-aos="fade-up"
                     hoverable
