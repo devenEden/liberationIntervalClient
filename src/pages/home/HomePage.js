@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { verifyTokenApiCall } from "../../api/auth/auth";
 import ProfileDrawer from "../../components/common/drawers/ProfileDrawer";
+import AOS from 'aos';
 
 const HomePage = () => {
   const api_url = useSelector((state) => state.globalReducer.api_url);
@@ -29,6 +30,7 @@ const HomePage = () => {
 
   useEffect(() => {
     verify();
+    AOS.init({duration:2000})
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
