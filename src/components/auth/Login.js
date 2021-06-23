@@ -21,19 +21,23 @@ export class LoginLayout extends Component {
       values,
       "/api/auth/login"
     );
-    if (!res.success) {
-      console.log(
-        "Action",
-        this.props.toggleLoginSuccess({ success: false, loading: false })
-      );
-      message.error(res.error);
-    } else {
-      console.log(
-        "Action",
-        this.props.toggleLoginSuccess({ success: true, loading: false })
-      );
-      localStorage.setItem("auth_token", res.token);
-      this.props.history.push("/home");
+    try {
+      if (!res.success) {
+        console.log(
+          "Action",
+          this.props.toggleLoginSuccess({ success: false, loading: false })
+        );
+        message.error(res.error);
+      } else {
+        console.log(
+          "Action",
+          this.props.toggleLoginSuccess({ success: true, loading: false })
+        );
+        localStorage.setItem("auth_token", res.token);
+        this.props.history.push("/home");
+      }
+    } catch (error) {
+      message.error("Sorry an error occurred when you tried to log in");
     }
   };
   forgotPassword = async (values) => {
