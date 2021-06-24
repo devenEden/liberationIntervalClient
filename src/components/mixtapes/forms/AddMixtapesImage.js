@@ -42,8 +42,10 @@ const AddMixtapeImage = () => {
         dispatch(setMixtapeForm("audio"));
         message.info("Image cover has been uploaded");
       }
+      dispatch(toggleAddMixtapeLoading(false));
     } catch (error) {
       console.log("Error Occured uploading mixtape image");
+      dispatch(toggleAddMixtapeLoading(false));
       message.error("Sorry we are having some trouble uploading your cover");
     }
   };

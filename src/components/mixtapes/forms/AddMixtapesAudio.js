@@ -3,7 +3,10 @@ import { Form, Button, Space, Upload, message, Modal } from "antd";
 import { IoMdArrowDropdown, IoMdArrowUp, IoMdCheckmark } from "react-icons/io";
 import { sendFormDataToServer } from "../../../api/generalApiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { setMixtapeForm, toggleAddMixtapeLoading } from "../../../actions/mixtapeActions";
+import {
+  setMixtapeForm,
+  toggleAddMixtapeLoading,
+} from "../../../actions/mixtapeActions";
 
 const AddMixtapeAudio = () => {
   const api_url = useSelector((state) => state.globalReducer.api_url);
@@ -32,12 +35,13 @@ const AddMixtapeAudio = () => {
       else {
         localStorage.removeItem("addMixtapeStep");
         dispatch(setMixtapeForm("details"));
-        dispatch(toggleAddMixtapeLoading(false));
         Modal.success({
           content: "Your mixtape was uploaded succesfully",
         });
       }
+      dispatch(toggleAddMixtapeLoading(false));
     } catch (error) {
+      dispatch(toggleAddMixtapeLoading(false));
       console.log("Error Occured uploading mixtape image");
       message.error("Sorry we are having some trouble uploading your cover");
     }
