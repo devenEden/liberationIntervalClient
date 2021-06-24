@@ -7,6 +7,9 @@ import {
   setMixtapesRequest,
 } from "../../actions/mixtapeActions";
 import MainLoader from "../common/loaders/MainLoader";
+import ErrorEmpty from "../common/empty/ErrorEmpty";
+import { useHistory } from "react-router-dom";
+import NoDataEmpty from "../common/empty/NoDataEmpty";
 
 const { Meta } = Card;
 const CardContainer = () => {
@@ -14,8 +17,8 @@ const CardContainer = () => {
   const api_url = useSelector((state) => state.globalReducer.api_url);
   const mixtapes = useSelector((state) => state.mixtapeReducer.mixtapes);
   const success = useSelector((state) => state.mixtapeReducer.success);
-
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const getAllMixtapes = async () => {
     const res = await getAllMixtapesFromServer(api_url, "/api/mixtapes");
@@ -56,6 +59,10 @@ const CardContainer = () => {
   const openMixtape = (e) => {
     console.log(e.target.offsetParent.id);
   };
+
+  const emptyRedirectFunction = (e) => {
+    history.push("/mixtapes/create");
+  };
   useEffect(() => {
     getAllMixtapes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,27 +77,12 @@ const CardContainer = () => {
           {mixtapes.length <= 0 ? (
             <>
               {success ? (
-                <Empty
-                  description={
-                    <span>
-                      <h2>No Mixtapes Uploaded yet </h2>
-                      <p>Click the Upload button to upload hot new mixtapes</p>
-                    </span>
-                  }
-                >
-                  <Button type="primary">Upload New Mixtapes</Button>
-                </Empty>
+                <NoDataEmpty
+                  data="mixtapes"
+                  emptyFunction={emptyRedirectFunction}
+                />
               ) : (
-                <Empty
-                  description={
-                    <span>
-                      <h2>Sorry we are having trouble loading the mixtapes</h2>
-                      <p>
-                        Please check your connection and try to refresh the page
-                      </p>
-                    </span>
-                  }
-                ></Empty>
+                <ErrorEmpty data="mixtapes" />
               )}
             </>
           ) : (
