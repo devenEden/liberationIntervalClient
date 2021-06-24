@@ -7,7 +7,10 @@ import {
 } from "react-icons/io";
 import { sendFormDataToServer } from "../../../api/generalApiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { setMixtapeForm, toggleAddMixtapeLoading } from "../../../actions/mixtapeActions";
+import {
+  setMixtapeForm,
+  toggleAddMixtapeLoading,
+} from "../../../actions/mixtapeActions";
 
 const AddMixtapeImage = () => {
   const loading = useSelector(
@@ -15,8 +18,9 @@ const AddMixtapeImage = () => {
   );
   const api_url = useSelector((state) => state.globalReducer.api_url);
   const dispatch = useDispatch();
-  dispatch(toggleAddMixtapeLoading(true));
+
   const submitCoverImageForm = async (values) => {
+    dispatch(toggleAddMixtapeLoading(true));
     const formData = {
       name: Object.keys(values)[0],
       file: values.coverImage.file.originFileObj,
@@ -34,8 +38,8 @@ const AddMixtapeImage = () => {
     try {
       if (!res.success) message.error(res.error);
       else {
-        localStorage.setItem('addMixtapeStep','audio');
-        dispatch(setMixtapeForm('audio'));
+        localStorage.setItem("addMixtapeStep", "audio");
+        dispatch(setMixtapeForm("audio"));
         message.info("Image cover has been uploaded");
       }
     } catch (error) {
