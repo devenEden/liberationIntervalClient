@@ -19,7 +19,7 @@ const routes = [
   },
   {
     key: "/mixtapes",
-    path: "/mixtapes",
+    path: "/myMixtapes",
     component: MyMixtapePage,
   },
   {
