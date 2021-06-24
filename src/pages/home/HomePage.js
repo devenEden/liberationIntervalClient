@@ -30,7 +30,7 @@ const HomePage = () => {
 
   useEffect(() => {
     verify();
-    AOS.init({duration:2000})
+    AOS.init({duration:1000})
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
