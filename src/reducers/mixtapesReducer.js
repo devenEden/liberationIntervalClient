@@ -15,6 +15,10 @@ const initialState = {
   uploadMixtapesCoverImageSuccess: false,
   uploadMixtapesCoverAudioSuccess: false,
   uploadMixtapesDetails: {},
+
+  myMixtapesLoading: true,
+  myMixtapes: [],
+  getMyMixtapesSuccess: false,
 };
 
 const mixtapeReducer = (state = initialState, { type, payload }) => {
@@ -60,6 +64,20 @@ const mixtapeReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         AddMixtapeForm: payload,
+      };
+    case mixtapeConstants.GET_MYMIXTAPES_REQUEST:
+      return {
+        ...state,
+        getMyMixtapesSuccess: payload.success,
+        myMixtapes: payload.myMixtapes,
+        myMixtapesLoading: payload.loading,
+      };
+    case mixtapeConstants.GET_MYMIXTAPES_ERROR:
+      return {
+        ...state,
+        getMyMixtapesSuccess: payload.success,
+        myMixtapes: payload.myMixtapes,
+        myMixtapesLoading: payload.loading,
       };
     default:
       return state;
