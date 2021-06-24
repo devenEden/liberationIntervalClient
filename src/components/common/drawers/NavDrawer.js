@@ -47,7 +47,7 @@ const NavDrawer = () => {
             </Space>
           </h2>
         </Link>
-        <Link to="/mixtapes">
+        <Link to="/myMixtapes">
           <h2 onClick={closeDrawer} className="drawer-link">
             <Space>
               <span className="drawer-icon">
