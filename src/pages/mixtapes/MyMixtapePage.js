@@ -1,6 +1,5 @@
 import { Button } from "antd";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Header from "../../components/common/Header";
 import NavDrawer from "../../components/common/drawers/NavDrawer";
 import MyMixtapes from "../../components/mixtapes/MyMixtapes";
@@ -23,10 +22,6 @@ export class MyMixtapePage extends Component {
         <div className="main-container">
           <div className="my-mixtapes-container">
             <h1 className="my-mixtapes-title">My Mixtapes</h1>
-            <Button type="primary">
-              <Link to="/mixtapes/create">Upload New Mixtape</Link>
-            </Button>
-            <br /> <br />
             <div className="my-mixtapes-div">
               {this.state.hasData ? (
                 <>
