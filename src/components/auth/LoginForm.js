@@ -22,6 +22,7 @@ const LoginForm = ({ submitLoginForm }) => {
     <div className="auth-form-div">
       <Form
         layout="vertical"
+        validateTrigger="onBlur"
         labelCol={{ span: 9 }}
         wrapperCol={{
           span: 32,
@@ -43,7 +44,6 @@ const LoginForm = ({ submitLoginForm }) => {
             },
           ]}
         >
-          
           <Input autoComplete="off" />
         </Form.Item>
         <Form.Item

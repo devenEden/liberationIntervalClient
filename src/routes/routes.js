@@ -4,6 +4,7 @@ import HomePage from "../pages/home/HomePage";
 import LandingPage from "../pages/landing/LandingPage";
 import AddMixtapePage from "../pages/mixtapes/AddMixtapePage";
 import MyMixtapePage from "../pages/mixtapes/MyMixtapePage";
+import SingleMixtapePage from "../pages/mixtapes/SingleMixtapePage";
 import MusicPage from "../pages/music/MusicPage";
 
 const routes = [
@@ -28,6 +29,11 @@ const routes = [
     component: AddMixtapePage,
   },
   {
+    key: "/mixtapes/:mixtapeId",
+    path: "/mixtapes/:mixtapeId",
+    component: SingleMixtapePage,
+  },
+  {
     key: "/authentication",
     path: "/authentication",
     component: AuthPage,
@@ -38,10 +44,10 @@ const routes = [
     component: ResetPasswordPage,
   },
   {
-    key:'/',
-    path:'/',
-    component:LandingPage
-  }
+    key: "/",
+    path: "/",
+    component: LandingPage,
+  },
 ];
 
 export default routes;

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card } from "antd";
+import { BackTop, Card } from "antd";
 import img from "../../assets/s263939.jpg";
 import { getDataFromServer } from "../../api/generalApiCalls";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,22 +10,25 @@ import {
 import ErrorEmpty from "../common/empty/ErrorEmpty";
 import NoDataEmpty from "../common/empty/NoDataEmpty";
 import { useHistory } from "react-router-dom";
+import MainLoader from "../common/loaders/MainLoader";
 
 const { Meta } = Card;
 const MyMixtapes = () => {
-  const loading = useSelector((state) => state.mixtapeReducer.loading);
+  const loading = useSelector(
+    (state) => state.mixtapeReducer.myMixtapesLoading
+  );
   const api_url = useSelector((state) => state.globalReducer.api_url);
   const myMixtapes = useSelector((state) => state.mixtapeReducer.myMixtapes);
   const success = useSelector(
     (state) => state.mixtapeReducer.getMyMixtapesSuccess
   );
+
   const history = useHistory();
   const dispatch = useDispatch();
 
   const getMyMixtapes = async () => {
     const res = await getDataFromServer(api_url, "/api/mixtapes/myMixtapes");
     try {
-      console.log(res.data[0]);
       dispatch(
         getMyMixtapesRequest({
           loading: false,
@@ -45,6 +48,10 @@ const MyMixtapes = () => {
     history.push("/mixtapes/create");
   };
 
+  const openMixtape = (e) => {
+    history.push(`/mixtapes/${e.target.offsetParent.id}`);
+  };
+
   useEffect(() => {
     getMyMixtapes();
     console.log(loading);
@@ -52,34 +59,47 @@ const MyMixtapes = () => {
   }, []);
 
   return (
-    <div className="mixtapes-container">
-      {!success ? (
-        <ErrorEmpty data="mixtapes" />
+    <div style={{ width: "90%" }} className="mixtapes-container">
+      {loading ? (
+        <MainLoader />
       ) : (
         <>
-          {myMixtapes.length > 0 ? (
-            <>
-              {myMixtapes.map((mixtape) => {
-                return (
-                  <Card
-                    key={mixtape._id}
-                    hoverable
-                    style={{ width: 240 }}
-                    cover={<img alt="example" src={mixtape.imgUrl} />}
-                  >
-                    <Meta title={mixtape.name} description={mixtape.caption}/>
-                  </Card>
-                );
-              })}
-            </>
+          {!success ? (
+            <ErrorEmpty data="mixtapes" />
           ) : (
-            <NoDataEmpty
-              emptyFunction={emptyRedirectFunction}
-              data="mixtapes"
-            />
+            <>
+              {myMixtapes.length > 0 ? (
+                <>
+                  {myMixtapes.map((mixtape) => {
+                    return (
+                      <Card
+                        id={mixtape._id}
+                        onClick={openMixtape}
+                        key={mixtape._id}
+                        data-aos="fade-up"
+                        hoverable
+                        style={{ width: 240 }}
+                        cover={<img alt="example" src={mixtape.imgUrl} />}
+                      >
+                        <Meta
+                          title={mixtape.name}
+                          description={mixtape.caption}
+                        />
+                      </Card>
+                    );
+                  })}
+                </>
+              ) : (
+                <NoDataEmpty
+                  emptyFunction={emptyRedirectFunction}
+                  data="mixtapes"
+                />
+              )}
+            </>
           )}
         </>
       )}
+      <BackTop />
     </div>
   );
 };

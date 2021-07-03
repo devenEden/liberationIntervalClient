@@ -19,6 +19,21 @@ const initialState = {
   myMixtapesLoading: true,
   myMixtapes: [],
   getMyMixtapesSuccess: false,
+
+  singleMixtapeLoading: true,
+  singleMixtapeData: {},
+  singleMixtapeSuccess: false,
+
+  likeMixtapeSuccess: false,
+
+  addMixtapeCommentSuccess: false,
+  addMixtapeCommentLoading: false,
+
+  getMixtapeCommentsSuccess: false,
+  getMixtapeCommentLoading: true,
+  mixtapeComments: [],
+
+  playerDisplay: "none",
 };
 
 const mixtapeReducer = (state = initialState, { type, payload }) => {
@@ -79,6 +94,50 @@ const mixtapeReducer = (state = initialState, { type, payload }) => {
         myMixtapes: payload.myMixtapes,
         myMixtapesLoading: payload.loading,
       };
+    case mixtapeConstants.GET_SINGLE_MIXTAPE_REQUEST:
+      return {
+        ...state,
+        singleMixtapeLoading: payload.loading,
+        singleMixtapeSuccess: payload.success,
+        singleMixtapeData: payload.mixtape,
+      };
+    case mixtapeConstants.GET_SINGLE_MIXTAPE_ERROR:
+      return {
+        ...state,
+        singleMixtapeLoading: payload.loading,
+        singleMixtapeSuccess: payload.success,
+      };
+    case mixtapeConstants.GET_MIXTAPE_COMMENTS_REQUEST:
+      return {
+        ...state,
+        getMixtapeCommentsSuccess: payload.success,
+        getMixtapeCommentLoading: payload.loading,
+        mixtapeComments: payload.comments,
+      };
+    case mixtapeConstants.GET_MIXTAPE_COMMENTS_ERROR:
+      return {
+        ...state,
+        getMixtapeCommentsSuccess: payload.success,
+        getMixtapeCommentLoading: payload.loading,
+      };
+    case mixtapeConstants.ADD_MIXTAPES_COMMENT_ERROR:
+      return {
+        ...state,
+        addMixtapeCommentLoading: payload.loading,
+        addMixtapeCommentSuccess: payload.success,
+      };
+    case mixtapeConstants.ADD_MIXTAPES_COMMENT_REQUEST:
+      return {
+        ...state,
+        addMixtapeCommentLoading: payload.loading,
+        addMixtapeCommentSuccess: payload.success,
+        mixtapeComments: payload.comments,
+      };
+    case mixtapeConstants.TOGGLE_MIXTAPE_PLAYER: 
+       return {
+         ...state,
+         playerDisplay: payload
+       }
     default:
       return state;
   }

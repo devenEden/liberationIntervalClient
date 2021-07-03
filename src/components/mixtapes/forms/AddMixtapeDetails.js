@@ -67,7 +67,7 @@ const AddMixtapeDetails = () => {
           layout="vertical"
         >
           <Form.Item>
-            <h1>Upload new Mixtape</h1>
+            <h1>Upload Mixtape Details </h1>
           </Form.Item>
           <Form.Item
             preserve={true}
@@ -128,14 +128,14 @@ const AddMixtapeDetails = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className="auth-form-info">
+      {/* <div className="auth-form-info">
         <h1>Details</h1>
         <p>
           Here you can add details about your mixtape.
           <br /> If the upload is not completed the mixtape infor mation will
           saved under drafts which can be acessed from settings
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

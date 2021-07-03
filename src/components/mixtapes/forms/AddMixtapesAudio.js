@@ -56,7 +56,7 @@ const AddMixtapeAudio = () => {
           layout="vertical"
         >
           <Form.Item>
-            <h1>Upload new Mixtape</h1>
+            <h1>Upload mixtape Audio</h1>
           </Form.Item>
           <Form.Item name="audioMixtape" label="Upload" listType="picture">
             <Upload listType="picture" maxCount={1}>
@@ -84,10 +84,10 @@ const AddMixtapeAudio = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className="auth-form-info">
+      {/* <div className="auth-form-info">
         <h1>Upload the mixtape</h1>
         <p>Upload the audio mixtape</p>
-      </div>
+      </div> */}
     </div>
   );
 };

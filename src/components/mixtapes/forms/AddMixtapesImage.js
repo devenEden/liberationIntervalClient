@@ -59,7 +59,7 @@ const AddMixtapeImage = () => {
           layout="vertical"
         >
           <Form.Item>
-            <h1>Upload new Mixtape</h1>
+            <h1>Upload mixtape Cover Image</h1>
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: "Please add a cover image" }]}
@@ -90,13 +90,6 @@ const AddMixtapeImage = () => {
             </Space>
           </Form.Item>
         </Form>
-      </div>
-      <div className="auth-form-info">
-        <h1>Cover Image </h1>
-        <p>
-          Add Cover Image of the mixtape. You can your profile picture or any
-          picture you want to appear as the cover of your mixtape
-        </p>
       </div>
     </div>
   );

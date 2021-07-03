@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Card, Empty } from "antd";
+import { Card, Avatar } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMixtapesFromServer } from "../../api/home/homeApiCall";
 import {
@@ -10,6 +10,7 @@ import MainLoader from "../common/loaders/MainLoader";
 import ErrorEmpty from "../common/empty/ErrorEmpty";
 import { useHistory } from "react-router-dom";
 import NoDataEmpty from "../common/empty/NoDataEmpty";
+import img from "../../assets/s263939.jpg";
 
 const { Meta } = Card;
 const CardContainer = () => {
@@ -57,7 +58,7 @@ const CardContainer = () => {
     }
   };
   const openMixtape = (e) => {
-    console.log(e.target.offsetParent.id);
+    history.push(`/mixtapes/${e.target.offsetParent.id}`);
   };
 
   const emptyRedirectFunction = (e) => {
@@ -96,9 +97,12 @@ const CardContainer = () => {
                     data-aos="fade-up"
                     hoverable
                     style={{ width: 240 }}
-                    cover={<img alt="example" src={mixtape.imgUrl} />}
+                    cover={
+                      <img alt={mixtape.djUsername} src={mixtape.imgUrl} />
+                    }
                   >
                     <Meta
+                      avatar={<Avatar src={img} alt={mixtape.djUsername} />}
                       title={mixtape.djUsername}
                       description={mixtape.name}
                     />

@@ -23,18 +23,12 @@ export class LoginLayout extends Component {
     );
     try {
       if (!res.success) {
-        console.log(
-          "Action",
-          this.props.toggleLoginSuccess({ success: false, loading: false })
-        );
-        message.error(res.error);
+        this.props.toggleLoginSuccess({ success: false, loading: false });
+        message.error(res.error || "Sorry an error occurred please");
       } else {
-        console.log(
-          "Action",
-          this.props.toggleLoginSuccess({ success: true, loading: false })
-        );
+        this.props.toggleLoginSuccess({ success: true, loading: false });
         localStorage.setItem("auth_token", res.token);
-        this.props.history.push("/home");
+        window.location = "/home";
       }
     } catch (error) {
       message.error("Sorry an error occurred when you tried to log in");
@@ -69,7 +63,10 @@ export class LoginLayout extends Component {
   render() {
     return (
       <div className="container-central">
-        <div style={{marginTop:"70px"}}className="auth-form-container box-shadow">
+        <div
+          style={{ marginTop: "70px" }}
+          className="auth-form-container box-shadow"
+        >
           <LoginForm submitLoginForm={this.loginUser} />
           <LoginFormInfo />
           <ForgotPassword submitForgotPasswordForm={this.forgotPassword} />

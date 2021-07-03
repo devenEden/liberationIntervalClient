@@ -27,14 +27,12 @@ export const sendDataToServer = async (api_url, values, config) => {
 
     const apiResponse = res
       .json()
-      .then((response) => {
-        return response;
-      })
+      .then((response) => response)
       .catch((err) => err);
 
     return apiResponse;
   } catch (error) {
-    console.error("Error occured while sending the data to the server");
+    console.error("Error occured while sending the data to the server", error);
   }
 };
 
@@ -56,10 +54,29 @@ export const sendFormDataToServer = async (api_url, values, config) => {
       .then((response) => {
         return response;
       })
-      .catch((err) => {return err});
+      .catch((err) => {
+        return err;
+      });
 
     return apiResponse;
   } catch (error) {
     console.error("Error occured while sending the data to the server");
+  }
+};
+
+export const downloadFileFromServer = async (api_url, values, config) => {
+  try {
+    const res = await fetch(api_url, {
+      method: config.method,
+      headers: {
+        authorization: headers.authorization,
+        "Content-type": config.contentType,
+      },
+      body: JSON.stringify(values),
+    }).catch((err) => err);
+
+    return res;
+  } catch (error) {
+    console.error("Error occured while sending the data to the server", error);
   }
 };

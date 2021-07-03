@@ -12,7 +12,6 @@ import SecondaryLoader from "../loaders/SecondaryLoader";
 import ErrorEmpty from "../empty/ErrorEmpty";
 
 const ProfileDrawer = () => {
-
   const loading = useSelector((state) => state.globalReducer.profileLoading);
   const success = useSelector((state) => state.globalReducer.profileSuccess);
   const api_url = useSelector((state) => state.globalReducer.api_url);
@@ -25,29 +24,23 @@ const ProfileDrawer = () => {
 
   const dispatch = useDispatch();
   const closeProfileDrawer = () => {
-    console.log("Action", dispatch(toggleProfileDrawer(false)));
+    dispatch(toggleProfileDrawer(false));
   };
 
   const getProfileInfo = async () => {
     try {
       const res = await getDataFromServer(api_url, "/api/users/profile");
-      console.log(
-        "Action",
-        dispatch(
-          setProfileError({
-            success: res.success,
-            loading: false,
-            profileInfo: { ...res.data },
-          })
-        )
+      dispatch(
+        setProfileError({
+          success: res.success,
+          loading: false,
+          profileInfo: { ...res.data },
+        })
       );
     } catch (error) {
       console.error("Error: failed to display profile info from server");
-      console.log(
-        "Action",
-        dispatch(
-          setProfileError({ success: false, loading: false, profileInfo: {} })
-        )
+      dispatch(
+        setProfileError({ success: false, loading: false, profileInfo: {} })
       );
     }
   };
@@ -57,7 +50,6 @@ const ProfileDrawer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(profileInformation);
   return (
     <div>
       <Drawer
